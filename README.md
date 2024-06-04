@@ -1,4 +1,4 @@
-# My Project
+# Kryptonite App
 
 This project is a standardization test on implementing authentication, file upload service and defining access control in the Kryptonite app.
 
