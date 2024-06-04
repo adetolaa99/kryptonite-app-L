@@ -1,5 +1,4 @@
 const Image = require("../models/Image.js");
-const User = require("../models/User.js");
 
 const storeFile = async (userId, base64File) => {
   const image = new Image({
@@ -8,6 +7,15 @@ const storeFile = async (userId, base64File) => {
   });
   await image.save();
   return image;
+};
+
+const deleteFile = async (imageId) => {
+  const result = await Image.findByIdAndDelete(imageId);
+  if (result) {
+    return { success: true, message: "File deleted successfully." };
+  } else {
+    return { success: false, message: "File not found." };
+  }
 };
 
 const getFileById = async (imageId) => {
@@ -20,6 +28,7 @@ const getAllFiles = async () => {
 
 module.exports = {
   storeFile,
+  deleteFile,
   getFileById,
   getAllFiles,
 };

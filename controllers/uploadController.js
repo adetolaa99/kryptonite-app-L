@@ -1,5 +1,5 @@
 const { generateApiKey } = require("../services/apiKeyService.js");
-const { storeFile } = require("../services/fileService.js");
+const { storeFile, deleteFile } = require("../services/fileService.js");
 const User = require("../models/User.js");
 
 class UploadController {
@@ -15,7 +15,7 @@ class UploadController {
       return res.status(400).json({ msg: "No API key provided!" });
     }
 
-    let user = await User.findOne({ apikey });
+    let user = await User.findOne({ apiKey: apikey });
     if (!user) {
       const newApiKey = generateApiKey();
       user = new User({ apiKey: newApiKey });
@@ -32,6 +32,7 @@ class UploadController {
     const base64File = file.buffer.toString("base64");
 
     const image = await storeFile(user.id, base64File);
+    await deleteFile(image._id);
 
     res
       .status(200)
