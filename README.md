@@ -4,6 +4,6 @@ This project is on implementing authentication, file upload service and defining
 
 ## API Documentation
 
-For detailed API documentation, please refer to [API Documentation](./api.md).
+For detailed API documentation, please refer to [API Documentation](./apiDoc.md).
 
 ## Usage
