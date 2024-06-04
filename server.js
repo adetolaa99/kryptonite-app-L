@@ -1,13 +1,12 @@
 const express = require("express");
-require("dotenv").config()
+require("dotenv").config();
 
 const AuthRouter = require("./routes/authRoutes.js");
-const ApiKeyRouter = require("./routes/apiKeyRoute.js")
+const ApiKeyRouter = require("./routes/apiKeyRoute.js");
 const UploadRouter = require("./routes/uploadRoute.js");
 const AccessRouter = require("./routes/accessRoutes.js");
 
 const connectToDb = require("./database/mongodb.js");
-const redisClient = require("./config/redis.js");
 
 const app = express();
 
@@ -17,13 +16,17 @@ connectToDb();
 //Add Middleware
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Hello from Kryptonite App Homepage!");
+});
+
 app.get("/api", (req, res) => {
-  res.send("Hello Kryptonian!");
+  res.send("Hello from Kryptonite App API!");
 });
 
 // Use routes
 app.use("/api/auth", AuthRouter);
-app.use("/api/user", ApiKeyRouter)
+app.use("/api/user", ApiKeyRouter);
 app.use("/api/file", UploadRouter);
 app.use("/api/access", AccessRouter);
 
