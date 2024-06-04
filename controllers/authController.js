@@ -27,7 +27,7 @@ class AuthController {
       await sendConfirmationEmail(email);
 
       res.status(200).json({
-        msg: "You've successfully registered, Check your e-mail for confirmation.",
+        msg: "You've successfully registered, Please check your e-mail for confirmation.",
       });
     } catch (err) {
       console.error(err.message);

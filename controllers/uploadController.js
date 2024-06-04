@@ -1,4 +1,3 @@
-const { generateApiKey } = require("../services/apiKeyService.js");
 const { storeFile, deleteFile } = require("../services/fileService.js");
 const User = require("../models/User.js");
 
@@ -17,16 +16,14 @@ class UploadController {
 
     let user = await User.findOne({ apiKey: apikey });
     if (!user) {
-      const newApiKey = generateApiKey();
-      user = new User({ apiKey: newApiKey });
-      await user.save();
+      return res.status(400).json({ msg: "Invalid API key!" });
     }
 
     const fileType = file.mimetype.split("/")[0];
     if (fileType !== "image") {
       return res
         .status(400)
-        .json({ msg: "You're only allowed to upload image files" });
+        .json({ msg: "You're only allowed to upload an image file" });
     }
 
     const base64File = file.buffer.toString("base64");

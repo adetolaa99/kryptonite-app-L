@@ -13,12 +13,12 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendConfirmationEmail = async (to) => {
-  const subject = "Registration Successful";
+  const subject = "Registration Successful for Kryptonite App";
   const text =
-    "Thank you for registering. You can now proceed to log in using your email and password and an OTP will be sent to your email.";
+    "Thank you for registering! You can now proceed to log in using your email and password and an OTP will be sent to your email.";
   const html = `
     <div style="font-family: Arial, sans-serif; margin: 20px;">
-      <p>Thank you for registering.</p>
+      <p>Thank you for registering!</p>
       <p>You can now proceed to log in using your email and password and an OTP will be sent to your email.</p>
       <p>If you did not register, please ignore this email.</p>
       <p>Thank you.</p>
