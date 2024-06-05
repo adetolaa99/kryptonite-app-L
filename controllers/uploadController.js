@@ -29,7 +29,6 @@ class UploadController {
     const base64File = file.buffer.toString("base64");
 
     const image = await storeFile(user.id, base64File);
-    await deleteFile(image._id);
 
     res
       .status(200)
